@@ -12,7 +12,7 @@ if exist "%appdata%\Spotify\Spotify.exe" (
     set /a b=%a% + 1
 )
 
-TIMEOUT /T 1 > NUL 2>&1 
+timeout /t 1 > NUL 2>&1 
 
 if exist "%appdata%\Spotify" (
     rd /s/q "%appdata%\Spotify" > NUL 2>&1
@@ -31,4 +31,4 @@ if exist "%temp%\SpotifyUninstall.exe" (
 
 if %b% == 0 echo Spotify not found
 if %b% NEQ 0 echo Spotify removed
-pause
+pause & exit
