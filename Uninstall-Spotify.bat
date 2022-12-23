@@ -8,7 +8,7 @@ if exist "%localappdata%\Spotify\Update" (
 )
 
 if exist "%appdata%\Spotify\Spotify.exe" ( 
-    "%appdata%\Spotify\Spotify.exe" /UNINSTALL /SILENT
+    start "" /wait "%appdata%\Spotify\Spotify.exe" /UNINSTALL /SILENT
     set /a b=%a% + 1
 )
 
