@@ -6,9 +6,6 @@ If you're looking to uninstall Spotify from your Windows system, you can use the
 
 1. Download the batch script: [Uninstall-Spotify.bat](https://raw.githack.com/amd64fox/Uninstall-Spotify/main/Uninstall-Spotify.bat).
 2. Double-click the downloaded `Uninstall-Spotify.bat` file to run it.
-3. Follow any on-screen prompts or instructions that may appear.
-
-Please note that running batch scripts from the internet can be risky. Ensure you trust the source before executing any script on your system.
 
 ## Script Details
 
