@@ -20,4 +20,6 @@ The script performs the following actions:
 
 ## Disclaimer
 
-Use this script at your own risk. Make sure you understand the actions it will perform on your system before running it. The author of this script is not responsible for any damage or loss caused by its usage.
+- Use this script at your own risk. Make sure you understand the actions it will perform on your system before running it. The author of this script is not responsible for any damage or loss caused by its usage.
+- This script only deletes the desktop version.
+
