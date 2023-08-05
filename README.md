@@ -1,6 +1,6 @@
 # Uninstall Spotify for Windows
 
-If you're looking to uninstall Spotify from your Windows system, you can use the provided batch script.
+The script aims to fully uninstall the desktop Spotify version.
 
 ## Usage
 
@@ -21,5 +21,3 @@ The script performs the following actions:
 ## Disclaimer
 
 - Use this script at your own risk. Make sure you understand the actions it will perform on your system before running it. The author of this script is not responsible for any damage or loss caused by its usage.
-- This script only deletes the desktop version.
-
