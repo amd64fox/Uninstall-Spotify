@@ -1,40 +1,23 @@
 @echo off
 
-setlocal enabledelayedexpansion
+set PWSH="%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command
+set RawGit='https://raw.githubusercontent.com/amd64fox/Uninstall-Spotify/refs/heads/main/core.ps1'
+set JsDelivr='https://cdn.jsdelivr.net/gh/amd64fox/Uninstall-Spotify@refs/heads/main/core.ps1'
+set TLS=[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;
 
-REM Reset permissions for Spotify Update folder
-if exist "%localappdata%\Spotify\Update" (
-    icacls "%localappdata%\Spotify\Update" /reset /T > NUL 2>&1
-)
-
-set actions=0
-
-REM Uninstall Spotify if it exists
-if exist "%appdata%\Spotify\Spotify.exe" (
-    start "" /wait "%appdata%\Spotify\Spotify.exe" /UNINSTALL /SILENT
-    set /a actions+=1
-)
-
-timeout /t 1 > NUL 2>&1
-
-REM Remove Spotify data folders
-for %%d in ("%appdata%\Spotify" "%localappdata%\Spotify") do (
-    if exist "%%d" (
-        rd /s/q "%%d" > NUL 2>&1
-        set /a actions+=1
-    )
-)
-
-REM Delete SpotifyUninstall.exe if it exists
-if exist "%temp%\SpotifyUninstall.exe" (
-    del /s /q  "%temp%\SpotifyUninstall.exe" > NUL 2>&1
-    set /a actions+=1
-)
-
-if !actions! == 0 (
-    echo Spotify is not installed or not found
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    goto :run
 ) else (
-    echo Spotify has been successfully uninstalled
+    %PWSH% "try { start wt 'cmd /c \"%~dpnx0\"' -v RunAs } catch { start cmd '/c \"%~dpnx0\"' -v RunAs}"
+    exit /b
 )
 
-pause & exit
+:run
+if exist "%~dp0core.ps1" (
+    %PWSH% "& { $(Get-Content '%~dp0core.ps1' -Raw) } | iex"
+) else (
+    %PWSH% %TLS% "& { $(try { iwr -useb %RawGit% } catch { iwr -useb %JsDelivr% }) } | iex"
+)
+
+exit /b
