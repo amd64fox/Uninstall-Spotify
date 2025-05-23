@@ -7,7 +7,7 @@ set TLS=[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]:
 
 if "%1"=="e" goto :run
 
-%PWSH% "[Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)" | findstr "True" >nul
+%PWSH% "([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)" | findstr "True" >nul
 
 if %errorLevel% == 0 (
     goto :run
