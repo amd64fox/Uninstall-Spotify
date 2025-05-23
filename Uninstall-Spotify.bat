@@ -5,11 +5,14 @@ set RawGit='https://raw.githubusercontent.com/amd64fox/Uninstall-Spotify/refs/he
 set JsDelivr='https://cdn.jsdelivr.net/gh/amd64fox/Uninstall-Spotify@refs/heads/main/core.ps1'
 set TLS=[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;
 
-net session >nul 2>&1
+if "%1"=="e" goto :run
+
+%PWSH% "[Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)" | findstr "True" >nul
+
 if %errorLevel% == 0 (
     goto :run
 ) else (
-    %PWSH% "try { start wt 'cmd /c \"%~dpnx0\"' -v RunAs } catch { start cmd '/c \"%~dpnx0\"' -v RunAs}"
+    %PWSH% "try { start wt 'cmd /c \"%~dpnx0\" e' -v RunAs } catch { start cmd '/c \"%~dpnx0\" e' -v RunAs}"
     exit /b
 )
 
