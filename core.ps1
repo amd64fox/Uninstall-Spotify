@@ -164,7 +164,7 @@ function Stop-SpotifyProcesses {
     )
 
     for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
-        $processes = Get-Process -Name "Spotify" -ErrorAction SilentlyContinue
+        $processes = Get-Process -Name "Spotify","SpotifyLauncher","SpotifyUninstall" -ErrorAction SilentlyContinue
         if (-not $processes) { break }
 
         $processes | ForEach-Object {
