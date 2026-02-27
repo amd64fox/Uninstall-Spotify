@@ -2,7 +2,8 @@
 set PWSH="%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -Command
 set RawGit='https://raw.githubusercontent.com/amd64fox/Uninstall-Spotify/refs/heads/main/core.ps1'
 set JsDelivr='https://cdn.jsdelivr.net/gh/amd64fox/Uninstall-Spotify@refs/heads/main/core.ps1'
-set TLS=[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;
+
+set TLS=[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; [System.Net.WebRequest]::DefaultWebProxy = $null;
 
 if "%1"=="e" goto :run
 
